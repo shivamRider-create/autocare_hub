@@ -1,0 +1,219 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service History | AutoCare Hub</title>
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .history-content {
+            padding: 35px;
+        }
+
+        .history-form {
+            background: #1c1c1c;
+            border: 1px solid #333;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 35px;
+        }
+
+        .history-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+        }
+
+        .history-form label {
+            display: block;
+            margin-bottom: 8px;
+            color: #ddd;
+        }
+
+        .history-form input,
+        .history-form select,
+        .history-form textarea {
+            width: 100%;
+            padding: 12px;
+            background: #111;
+            border: 1px solid #444;
+            border-radius: 5px;
+            color: white;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+        }
+
+        .history-form textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .history-form button {
+            background: #ff6b00;
+            border: none;
+            padding: 13px 25px;
+            color: white;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .history-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+            gap: 20px;
+        }
+
+        .history-card {
+            background: #1c1c1c;
+            border: 1px solid #333;
+            padding: 22px;
+            border-radius: 10px;
+        }
+
+        .history-card h3 {
+            margin: 10px 0;
+        }
+
+        .history-card p {
+            color: #bbb;
+            margin: 10px 0;
+        }
+
+        .history-cost {
+            color: #ff6b00 !important;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        @media(max-width: 650px) {
+            .history-content {
+                padding: 18px;
+            }
+
+            .history-grid {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+        }
+    </style>
+</head>
+
+<body class="dashboard-page">
+
+    
+<aside class="sidebar">
+
+    <a href="index.html" class="logo">
+        AUTO<span>CARE</span> HUB
+    </a>
+
+    <p class="sidebar-label">MAIN MENU</p>
+
+    <nav class="sidebar-nav">
+        <a href="dashboard.html">▦ Dashboard</a>
+        <a href="vehicles.html">🏍️ My Vehicles</a>
+        <a href="service-history.html" class="active">🔧 Service History</a>
+        <a href="appointments.html">📅 Appointments</a>
+        <a href="fuel-tracker.html">⛽ Fuel Tracker</a>
+        <a href="expenses.html">💰 Expenses</a>
+        <a href="reminders.html">🔔 Reminders</a>
+        <a href="documents.html">📁 Documents</a>
+    </nav>
+
+    <button id="logoutBtn" class="logout-btn">
+        ↪ Logout
+    </button>
+
+</aside>
+
+    <main class="dashboard-main">
+
+        <header class="dashboard-header">
+            <div>
+                <h1>Service History</h1>
+                <p>Track your vehicle maintenance and expenses.</p>
+            </div>
+
+            <div class="user-info">
+                <span id="userAvatar"></span>
+                <span id="userName"></span>
+            </div>
+        </header>
+
+        <section class="history-content">
+
+            <h2>Add Service Record</h2>
+
+            <form id="serviceForm" class="history-form">
+
+                <div class="history-grid">
+
+                    <div>
+                        <label for="vehicleId">Select Vehicle</label>
+                        <select id="vehicleId" required>
+                            <option value="">Loading vehicles...</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="centerId">Service Center</label>
+                        <select id="centerId" required>
+                            <option value="">Loading centers...</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="serviceDate">Service Date</label>
+                        <input type="date" id="serviceDate" required>
+                    </div>
+
+                    <div>
+                        <label for="odometer">Odometer Reading (KM)</label>
+                        <input type="number" id="odometer"
+                               min="0" step="0.01">
+                    </div>
+
+                    <div>
+                        <label for="laborCost">Labour Cost (₹)</label>
+                        <input type="number" id="laborCost"
+                               min="0" step="0.01" value="0" required>
+                    </div>
+
+                    <div>
+                        <label for="totalCost">Total Cost (₹)</label>
+                        <input type="number" id="totalCost"
+                               min="0" step="0.01" required>
+                    </div>
+
+                </div>
+
+                <label for="description">Work Description</label>
+                <textarea id="description"
+                    placeholder="Example: Engine oil change, brake inspection..."
+                    required></textarea>
+
+                <button type="submit" id="saveServiceBtn">
+                    + Add Service Record
+                </button>
+
+                <p id="serviceMessage"></p>
+
+            </form>
+
+            <h2>Your Previous Services</h2>
+
+            <div id="historyList" class="history-list">
+                Loading service history...
+            </div>
+
+        </section>
+
+    </main>
+
+    <script src="service-history.js"></script>
+
+</body>
+</html>

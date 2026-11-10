@@ -1,0 +1,197 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointments | AutoCare Hub</title>
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .appointment-content {
+            padding: 30px;
+        }
+
+        .appointment-form,
+        .appointment-card {
+            background: #1c1c1c;
+            border: 1px solid #333;
+            border-radius: 10px;
+            padding: 24px;
+            margin-bottom: 22px;
+        }
+
+        .appointment-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+
+        .appointment-form label {
+            display: block;
+            margin-bottom: 7px;
+        }
+
+        .appointment-form input,
+        .appointment-form select,
+        .appointment-form textarea {
+            width: 100%;
+            padding: 12px;
+            background: #111;
+            color: white;
+            border: 1px solid #444;
+            border-radius: 5px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+        }
+
+        .appointment-form textarea {
+            min-height: 80px;
+        }
+
+        .appointment-form button,
+        .cancel-appointment {
+            padding: 12px 22px;
+            border: none;
+            border-radius: 5px;
+            background: #ff6b00;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .cancel-appointment {
+            background: #b83232;
+        }
+
+        .appointment-status {
+            color: #ff8a35;
+            font-weight: bold;
+            text-transform: capitalize;
+        }
+
+        .appointment-card p {
+            color: #bbb;
+            margin: 10px 0;
+        }
+
+        @media(max-width: 650px) {
+            .appointment-grid {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+
+            .appointment-content {
+                padding: 16px;
+            }
+        }
+    </style>
+</head>
+
+<body class="dashboard-page">
+
+    <aside class="sidebar">
+        <a href="index.html" class="logo">
+            AUTO<span>CARE</span> HUB
+        </a>
+
+        <p class="sidebar-label">MAIN MENU</p>
+
+        <nav class="sidebar-nav">
+            <a href="dashboard.html">▦ Dashboard</a>
+            <a href="vehicles.html">🏍️ My Vehicles</a>
+            <a href="appointments.html" class="active">📅 Appointments</a>
+            <a href="service-history.html">🔧 Service History</a>
+            <a href="fuel-tracker.html">⛽ Fuel Tracker</a>
+            <a href="expenses.html">💰 Expenses</a>
+            <a href="reminders.html">🔔 Reminders</a>
+            <a href="documents.html">📁 Documents</a>
+        </nav>
+
+        <button id="logoutBtn" class="logout-btn">↪ Logout</button>
+    </aside>
+
+    <main class="dashboard-main">
+
+        <header class="dashboard-header">
+            <div>
+                <p class="tagline">VEHICLE MANAGEMENT</p>
+                <h1>Appointments</h1>
+                <p class="dashboard-subtitle">
+                    Book and manage your vehicle service appointments.
+                </p>
+            </div>
+
+            <div class="user-profile">
+                <div class="user-avatar" id="userAvatar">U</div>
+                <div><strong id="userName"></strong></div>
+            </div>
+        </header>
+
+        <section class="appointment-content">
+
+            <h2>Book an Appointment</h2>
+
+            <form id="appointmentForm" class="appointment-form">
+
+                <div class="appointment-grid">
+
+                    <div>
+                        <label for="vehicleId">Select Vehicle</label>
+                        <select id="vehicleId" required>
+                            <option value="">Loading vehicles...</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="centerId">Service Center</label>
+                        <select id="centerId" required>
+                            <option value="">Loading centers...</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="serviceId">Select Service</label>
+                        <select id="serviceId" required>
+                            <option value="">Select center first</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="appointmentDate">Appointment Date</label>
+                        <input type="date" id="appointmentDate" required>
+                    </div>
+
+                    <div>
+                        <label for="appointmentTime">Appointment Time</label>
+                        <input type="time" id="appointmentTime" required>
+                    </div>
+
+                </div>
+
+                <label for="notes">Additional Notes</label>
+                <textarea id="notes"
+                    placeholder="Describe any additional requirements..."></textarea>
+
+                <button type="submit" id="bookButton">
+                    Book Appointment
+                </button>
+
+                <p id="appointmentMessage"></p>
+
+            </form>
+
+            <h2>My Appointments</h2>
+
+            <div id="appointmentList">
+                Loading appointments...
+            </div>
+
+        </section>
+
+    </main>
+
+    <script src="appointments.js"></script>
+
+</body>
+</html>

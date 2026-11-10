@@ -1,0 +1,205 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expenses | AutoCare Hub</title>
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .expense-content {
+            padding: 30px;
+        }
+
+        .expense-panel, .expense-card, .expense-stat {
+            background: #1c1c1c;
+            border: 1px solid #333;
+            border-radius: 10px;
+            padding: 24px;
+            margin-bottom: 22px;
+        }
+
+        .expense-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+
+        .expense-panel label {
+            display: block;
+            margin-bottom: 7px;
+        }
+
+        .expense-panel input,
+        .expense-panel select,
+        .expense-panel textarea {
+            width: 100%;
+            padding: 12px;
+            background: #111;
+            color: white;
+            border: 1px solid #444;
+            border-radius: 5px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+        }
+
+        .expense-panel textarea {
+            min-height: 80px;
+        }
+
+        .expense-panel button, .delete-expense {
+            padding: 12px 22px;
+            border: none;
+            border-radius: 5px;
+            background: #ff6b00;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .delete-expense {
+            background: #b83232;
+        }
+
+        .expense-stat h2, .expense-total {
+            color: #ff6b00;
+        }
+
+        .expense-card p {
+            color: #bbb;
+            margin: 10px 0;
+        }
+
+        @media(max-width: 650px) {
+            .expense-grid {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+
+            .expense-content {
+                padding: 16px;
+            }
+        }
+    </style>
+</head>
+
+<body class="dashboard-page">
+
+    <aside class="sidebar">
+
+        <a href="index.html" class="logo">
+            AUTO<span>CARE</span> HUB
+        </a>
+
+        <p class="sidebar-label">MAIN MENU</p>
+
+        <nav class="sidebar-nav">
+            <a href="dashboard.html">▦ Dashboard</a>
+            <a href="vehicles.html">🏍️ My Vehicles</a>
+            <a href="appointments.html">📅 Appointments</a>
+            <a href="service-history.html">🔧 Service History</a>
+            <a href="fuel-tracker.html">⛽ Fuel Tracker</a>
+            <a href="expenses.html" class="active">💰 Expenses</a>
+            <a href="reminders.html">🔔 Reminders</a>
+            <a href="documents.html">📁 Documents</a>
+        </nav>
+
+        <button id="logoutBtn" class="logout-btn">↪ Logout</button>
+
+    </aside>
+
+    <main class="dashboard-main">
+
+        <header class="dashboard-header">
+            <div>
+                <p class="tagline">VEHICLE MANAGEMENT</p>
+                <h1>Expenses</h1>
+                <p class="dashboard-subtitle">
+                    Manage and monitor your vehicle spending.
+                </p>
+            </div>
+
+            <div class="user-profile">
+                <div class="user-avatar" id="userAvatar">U</div>
+                <strong id="userName"></strong>
+            </div>
+        </header>
+
+        <section class="expense-content">
+
+            <div class="expense-stat">
+                <p>Total Expenses</p>
+                <h2 id="totalExpenses">₹0</h2>
+                <span id="totalRecords">0 records</span>
+            </div>
+
+            <h2>Add New Expense</h2>
+
+            <form id="expenseForm" class="expense-panel">
+
+                <div class="expense-grid">
+
+                    <div>
+                        <label for="vehicleId">Select Vehicle</label>
+                        <select id="vehicleId" required>
+                            <option value="">Loading vehicles...</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="category">Expense Category</label>
+                        <select id="category" required>
+                            <option value="">Select Category</option>
+                            <option value="fuel">Fuel</option>
+                            <option value="service">Service</option>
+                            <option value="repair">Repair</option>
+                            <option value="insurance">Insurance</option>
+                            <option value="accessories">Accessories</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="amount">Amount (₹)</label>
+                        <input type="number" id="amount"
+                            min="0.01" step="0.01" required>
+                    </div>
+
+                    <div>
+                        <label for="expenseDate">Expense Date</label>
+                        <input type="date" id="expenseDate" required>
+                    </div>
+
+                </div>
+
+                <label for="description">Description</label>
+                <textarea id="description"
+                    placeholder="Enter expense details..."></textarea>
+
+                <button type="submit" id="saveExpenseBtn">
+                    Add Expense
+                </button>
+
+                <p id="expenseMessage"></p>
+
+            </form>
+
+            <h2>Expense History</h2>
+
+            <div id="expenseList">
+                Loading expenses...
+            </div>
+
+        </section>
+
+        <footer class="dashboard-footer">
+            © 2026 AutoCare Hub. Your Vehicle. Your Control.
+        </footer>
+
+    </main>
+
+    <script src="expenses.js"></script>
+
+</body>
+</html>

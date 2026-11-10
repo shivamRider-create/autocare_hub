@@ -1,0 +1,199 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reminders | AutoCare Hub</title>
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .reminder-content { padding: 30px; }
+
+        .reminder-panel, .reminder-card {
+            background: #1c1c1c;
+            border: 1px solid #333;
+            border-radius: 10px;
+            padding: 24px;
+            margin-bottom: 22px;
+        }
+
+        .reminder-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+
+        .reminder-panel label {
+            display: block;
+            margin-bottom: 7px;
+        }
+
+        .reminder-panel input,
+        .reminder-panel select,
+        .reminder-panel textarea {
+            width: 100%;
+            padding: 12px;
+            background: #111;
+            color: white;
+            border: 1px solid #444;
+            border-radius: 5px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+        }
+
+        .reminder-panel textarea { min-height: 80px; }
+
+        .reminder-panel button,
+        .reminder-actions button {
+            padding: 11px 18px;
+            border: none;
+            border-radius: 5px;
+            background: #ff6b00;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .reminder-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 18px;
+        }
+
+        .reminder-actions .dismiss-btn,
+        .reminder-actions .delete-btn {
+            background: #b83232;
+        }
+
+        .reminder-card p { color: #bbb; margin: 10px 0; }
+
+        .reminder-status {
+            color: #ff8a35 !important;
+            font-weight: bold;
+            text-transform: capitalize;
+        }
+
+        @media(max-width: 650px) {
+            .reminder-grid { grid-template-columns: 1fr; gap: 0; }
+            .reminder-content { padding: 16px; }
+        }
+    </style>
+</head>
+
+<body class="dashboard-page">
+
+    <aside class="sidebar">
+        <a href="index.html" class="logo">
+            AUTO<span>CARE</span> HUB
+        </a>
+
+        <p class="sidebar-label">MAIN MENU</p>
+
+        <nav class="sidebar-nav">
+            <a href="dashboard.html">▦ Dashboard</a>
+            <a href="vehicles.html">🏍️ My Vehicles</a>
+            <a href="appointments.html">📅 Appointments</a>
+            <a href="service-history.html">🔧 Service History</a>
+            <a href="fuel-tracker.html">⛽ Fuel Tracker</a>
+            <a href="expenses.html">💰 Expenses</a>
+            <a href="reminders.html" class="active">🔔 Reminders</a>
+            <a href="documents.html">📁 Documents</a>
+        </nav>
+
+        <button id="logoutBtn" class="logout-btn">↪ Logout</button>
+    </aside>
+
+    <main class="dashboard-main">
+
+        <header class="dashboard-header">
+            <div>
+                <p class="tagline">VEHICLE MANAGEMENT</p>
+                <h1>Maintenance Reminders</h1>
+                <p class="dashboard-subtitle">
+                    Never miss your next vehicle maintenance.
+                </p>
+            </div>
+
+            <div class="user-profile">
+                <div class="user-avatar" id="userAvatar">U</div>
+                <strong id="userName"></strong>
+            </div>
+        </header>
+
+        <section class="reminder-content">
+
+            <h2>Add New Reminder</h2>
+
+            <form id="reminderForm" class="reminder-panel">
+
+                <div class="reminder-grid">
+
+                    <div>
+                        <label for="vehicleId">Select Vehicle</label>
+                        <select id="vehicleId" required>
+                            <option value="">Loading vehicles...</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="title">Reminder Title</label>
+                        <input type="text" id="title"
+                            placeholder="e.g. Engine Oil Change" required>
+                    </div>
+
+                    <div>
+                        <label for="reminderType">Reminder Type</label>
+                        <select id="reminderType">
+                            <option value="service">Service</option>
+                            <option value="insurance">Insurance</option>
+                            <option value="oil">Oil Change</option>
+                            <option value="tyre">Tyre Check</option>
+                            <option value="general">General</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="dueDate">Due Date</label>
+                        <input type="date" id="dueDate">
+                    </div>
+
+                    <div>
+                        <label for="dueOdometer">Due Odometer (KM)</label>
+                        <input type="number" id="dueOdometer"
+                            min="0" step="0.01">
+                    </div>
+
+                </div>
+
+                <label for="description">Description</label>
+                <textarea id="description"
+                    placeholder="Enter reminder details..."></textarea>
+
+                <button type="submit" id="saveReminderBtn">
+                    Add Reminder
+                </button>
+
+                <p id="reminderMessage"></p>
+
+            </form>
+
+            <h2>My Reminders</h2>
+
+            <div id="reminderList">
+                Loading reminders...
+            </div>
+
+        </section>
+
+        <footer class="dashboard-footer">
+            © 2026 AutoCare Hub. Your Vehicle. Your Control.
+        </footer>
+
+    </main>
+
+    <script src="reminders.js"></script>
+
+</body>
+</html>
