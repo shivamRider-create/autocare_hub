@@ -14,7 +14,7 @@ if (!token || !storedUser) {
 const user = JSON.parse(storedUser);
 
 // API URL
-const API_URL = "http://localhost:5000/api/vehicles";
+const API_URL = "https://autocare-hub-api.onrender.com/api/vehicles";
 
 // HTML ELEMENTS
 const vehicleForm = document.getElementById("vehicleForm");

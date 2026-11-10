@@ -13,8 +13,8 @@ if (!token || !storedUser) {
 
 const user = JSON.parse(storedUser);
 
-// API URL
-const API_URL = "http://localhost:5000/api";
+// DEPLOYED API URL
+const API_URL = "https://autocare-hub-api.onrender.com/api";
 
 // =============================================
 // DISPLAY USER
@@ -30,10 +30,12 @@ document.getElementById("userAvatar").textContent =
 // =============================================
 
 document.getElementById("logoutBtn").addEventListener("click", () => {
+
     sessionStorage.removeItem("token");
     sessionStorage.removeItem("user");
 
     window.location.href = "login.html";
+
 });
 
 // =============================================
@@ -84,6 +86,7 @@ async function loadDashboard() {
             activity.textContent = "No recent service activity available.";
 
             const info = document.createElement("span");
+
             info.textContent = "Your service records will appear here.";
 
             activity.appendChild(info);
@@ -105,8 +108,7 @@ async function loadDashboard() {
 
             const description = document.createElement("p");
 
-            description.textContent =
-                record.work_description;
+            description.textContent = record.work_description;
 
             const date = document.createElement("p");
 
@@ -133,7 +135,7 @@ async function loadDashboard() {
         console.error("Dashboard Error:", error);
 
         document.getElementById("recentActivity").textContent =
-            "Unable to load dashboard data. Please check the backend server.";
+            "Unable to load dashboard data. Please check your connection.";
 
     }
 

@@ -7,8 +7,7 @@ if (!token || !storedUser) {
 }
 
 const user = JSON.parse(storedUser);
-const API = "http://localhost:5000/api";
-
+const API = "https://autocare-hub-api.onrender.com/api";
 const fuelForm = document.getElementById("fuelForm");
 const fuelList = document.getElementById("fuelList");
 const vehicleSelect = document.getElementById("vehicleId");

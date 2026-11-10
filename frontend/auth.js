@@ -3,7 +3,14 @@
 // AUTOCARE HUB AUTHENTICATION
 // =====================================
 
-// REGISTRATION
+// DEPLOYED BACKEND API URL
+const API_URL = "https://autocare-hub-api.onrender.com/api";
+
+
+// =====================================
+// USER REGISTRATION
+// =====================================
+
 const registerForm = document.getElementById("registerForm");
 
 if (registerForm) {
@@ -28,7 +35,7 @@ if (registerForm) {
         try {
 
             const response = await fetch(
-                "http://localhost:5000/api/auth/register",
+                `${API_URL}/auth/register`,
                 {
                     method: "POST",
                     headers: {
@@ -54,14 +61,15 @@ if (registerForm) {
 
             } else {
 
-                alert(data.message);
+                alert(data.message || "Registration failed!");
 
             }
 
         } catch (error) {
 
             console.error("Registration error:", error);
-            alert("Unable to connect to the server.");
+
+            alert("Unable to connect to the server. Please try again.");
 
         }
 
@@ -88,7 +96,7 @@ if (loginForm) {
         try {
 
             const response = await fetch(
-                "http://localhost:5000/api/auth/login",
+                `${API_URL}/auth/login`,
                 {
                     method: "POST",
                     headers: {
@@ -107,6 +115,7 @@ if (loginForm) {
 
                 // Save login token and user information
                 sessionStorage.setItem("token", data.token);
+
                 sessionStorage.setItem(
                     "user",
                     JSON.stringify(data.user)
@@ -114,19 +123,20 @@ if (loginForm) {
 
                 alert("Login successful! Welcome " + data.user.name);
 
-                // Dashboard will be created next
+                // Redirect to dashboard
                 window.location.href = "dashboard.html";
 
             } else {
 
-                alert(data.message);
+                alert(data.message || "Login failed!");
 
             }
 
         } catch (error) {
 
             console.error("Login error:", error);
-            alert("Unable to connect to the server.");
+
+            alert("Unable to connect to the server. Please try again.");
 
         }
 

@@ -7,7 +7,7 @@ if (!token || !storedUser) {
 }
 
 const user = JSON.parse(storedUser);
-const API = "http://localhost:5000/api";
+const API = "https://autocare-hub-api.onrender.com/api";
 
 const documentForm = document.getElementById("documentForm");
 const documentList = document.getElementById("documentList");
@@ -187,7 +187,7 @@ async function loadDocuments() {
             });
 
             const link = document.createElement("a");
-            link.href = `http://localhost:5000${doc.file_url}`;
+            link.href = `https://autocare-hub-api.onrender.com${doc.file_url}`;
             link.target = "_blank";
             link.rel = "noopener noreferrer";
             link.textContent = "View Document";
